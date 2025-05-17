@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MonsterDamage : MonoBehaviour
 {
@@ -6,12 +6,21 @@ public class MonsterDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("💥 충돌 감지됨: " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            Debug.Log("🎯 Player 태그 확인됨");
+
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+            if (playerStats != null)
             {
-                playerHealth.TakeDamage(damage);
+                Debug.Log("⚔️ 데미지 적용 시작");
+                playerStats.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("❗ PlayerStats 컴포넌트를 찾을 수 없음!");
             }
         }
     }
