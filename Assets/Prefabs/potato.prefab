@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5840051093673876139}
   - component: {fileID: 754385131425588578}
   - component: {fileID: 573219480527534851}
+  - component: {fileID: 247034075532432584}
+  - component: {fileID: 679416849728761945}
   m_Layer: 0
   m_Name: potato
   m_TagString: Enemy
@@ -101,9 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
-  dropItemPrefab: {fileID: 4387811651529890807, guid: 85ef3f51b18a3694db0ccea81946db79, type: 3}
+  dropItemPrefab: {fileID: 8194832585152079012, guid: 79fff876851ae4842a08b6c3f2fc33a6, type: 3}
   hp: 10
-  speed: 3
+  speed: 6
 --- !u!114 &5840051093673876139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +182,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &247034075532432584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958673025305187101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb698df500c7fbc478e293acf1f0b5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!114 &679416849728761945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958673025305187101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74521e58c46e0a241a7a57ab6a8342ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7

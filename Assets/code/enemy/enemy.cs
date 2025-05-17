@@ -9,6 +9,7 @@ public class enemy : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject dropItemPrefab; // 드랍할 아이템을 연결해 놓을 변수
     private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
     
     public int hp = 10; // 적의 피통
     public float speed = 3f; // 이동 속도
@@ -39,15 +40,14 @@ public class enemy : MonoBehaviour
     public void onhit(int damage)
     {
         hp -= damage;
-        if (hp <= 0)
+        if (hp <= 0 && !isDead)
         {
-            // 사망 처리
-            StartCoroutine(FadeOut());
+            isDead = true;
             // 현재 적 위치에 드랍 아이템 생성
             Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+            // 사망 처리
+            StartCoroutine(FadeOut());
         }
-        // 체력바 갱신
-        // 무적시간 진입
     }
 
 
