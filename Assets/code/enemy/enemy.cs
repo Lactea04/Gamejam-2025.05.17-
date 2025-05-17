@@ -9,8 +9,8 @@ public class enemy : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject dropItemPrefab; // 드랍할 아이템을 연결해 놓을 변수
     private SpriteRenderer spriteRenderer;
-
-    public int hp = 10;
+    
+    public int hp = 10; // 적의 피통
     public float speed = 3f; // 이동 속도
 
     public void Initialized(GameObject _user)
@@ -23,7 +23,7 @@ public class enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;// 회전 고정
     }
-    
+
     private void FixedUpdate()
     {
         if (user == null) return;
@@ -32,7 +32,7 @@ public class enemy : MonoBehaviour
 
         if (direction.x < 0)
             spriteRenderer.flipX = false;
-        else if (direction.x > 0) 
+        else if (direction.x > 0)
             spriteRenderer.flipX = true;
     }
 
@@ -51,11 +51,13 @@ public class enemy : MonoBehaviour
     }
 
 
+    public void givehit()
+    {
+       
+        
 
 
-
-
-
+    }
 
 
     // Update is called once per frame
