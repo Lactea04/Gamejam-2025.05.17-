@@ -8,10 +8,10 @@ public class WeaponHit : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+            enemy enemy = collision.GetComponent<enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.onhit(damage);
             }
         }
     }
