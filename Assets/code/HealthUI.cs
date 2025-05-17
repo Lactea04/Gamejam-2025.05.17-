@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
     public Image fillImage;
-    public user_status currentHealth;
+    public PlayerHealth playerHealth;
 
     void Update()
     {
-        if (currentHealth != null && fillImage != null)
+        if (playerHealth != null && fillImage != null)
         {
-            float ratio = (float)currentHealth.currentHealth / currentHealth.maxHealth;
+            float ratio = (float)playerHealth.currentHealth / playerHealth.maxHealth;
             fillImage.fillAmount = Mathf.Clamp01(ratio);
         }
     }

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    public Transform firePoint;  // 마우스를 바라볼 기준점
+    public Transform firePoint;         // 무기를 생성할 위치
+    public GameObject stickPrefab;      // 회전 공격 무기 프리팹 (WeaponSwing 포함)
 
     private PlayerStats stats;
     private float attackCooldown = 0f;
@@ -12,15 +11,12 @@ public class PlayerAttackController : MonoBehaviour
     void Start()
     {
         stats = GetComponent<PlayerStats>();
-        if (stats == null)
-        {
-            Debug.LogError("PlayerStats 컴포넌트가 필요합니다!");
-        }
 
         if (firePoint == null)
-        {
-            Debug.LogError("FirePoint가 연결되지 않았습니다!");
-        }
+            Debug.LogError("❌ FirePoint가 연결되지 않았습니다.");
+
+        if (stickPrefab == null)
+            Debug.LogError("❌ stickPrefab이 연결되지 않았습니다.");
     }
 
     void Update()
@@ -38,7 +34,7 @@ public class PlayerAttackController : MonoBehaviour
         direction.z = 0f;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        firePoint.rotation = Quaternion.Euler(0, 0, angle);
+        firePoint.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     void AutoAttack()
@@ -49,10 +45,13 @@ public class PlayerAttackController : MonoBehaviour
             return;
         }
 
-        // 자동 공격 트리거
-        Debug.Log($"🗡️ 자동 근접 공격 발생! 방향: {firePoint.right}, 공격력: {stats.attackPower}");
+        attackCooldown = 1f / stats.attackSpeed;
 
-        attackCooldown = 1f / stats.attackSpeed; // 쿨타임 = 1 / 초당 공격 횟수
+        // 스틱 생성 및 firePoint 방향에 맞춰 회전 배치
+        GameObject stick = Instantiate(stickPrefab, firePoint.position, firePoint.rotation, transform);
+        stick.GetComponent<WeaponSwing>().init(firePoint);
+        Debug.Log("🪵 스틱 공격 발생!");
+
+        // WeaponSwing이 알아서 회전하고 일정 시간 뒤 Destroy 처리
     }
 }
-
