@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
-  dropItemPrefab: {fileID: 4387811651529890807, guid: 85ef3f51b18a3694db0ccea81946db79, type: 3}
+  dropItemPrefab: {fileID: 5569853334351462934, guid: 73d58ba151cefc64bb9b959fe28bd139, type: 3}
   hp: 10
   speed: 3
 --- !u!61 &3837424474677539827
