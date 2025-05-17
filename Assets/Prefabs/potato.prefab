@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 754385131425588578}
   - component: {fileID: 573219480527534851}
   - component: {fileID: 247034075532432584}
-  - component: {fileID: 679416849728761945}
   m_Layer: 0
   m_Name: potato
   m_TagString: Enemy
@@ -195,16 +194,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
---- !u!114 &679416849728761945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958673025305187101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74521e58c46e0a241a7a57ab6a8342ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 7

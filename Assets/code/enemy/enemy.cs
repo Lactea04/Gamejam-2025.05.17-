@@ -27,7 +27,7 @@ public class enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (user == null) return;
+        if (user == null || isDead) return;
         Vector2 direction = (user.transform.position - transform.position).normalized; //방향벡터 계산
         rb.velocity = direction * speed; // 속도 설정하여 이동
 
@@ -43,30 +43,16 @@ public class enemy : MonoBehaviour
         if (hp <= 0 && !isDead)
         {
             isDead = true;
+            // 정지
+            rb.velocity = Vector2.zero;
+            // 충돌 비활성화
+            gameObject.GetComponent<Collider2D>().enabled = false;
             // 현재 적 위치에 드랍 아이템 생성
             Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
             // 사망 처리
             StartCoroutine(FadeOut());
         }
     }
-
-
-    public void givehit()
-    {
-       
-        
-
-
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
 
     // 캐릭터를 점점 투명하게 만들어 사라지게 하는 코루틴
     IEnumerator FadeOut()
@@ -88,7 +74,7 @@ public class enemy : MonoBehaviour
             yield return null;
         }
 
-        // 완전히 사라지면 오브젝트 비활성화
-        gameObject.SetActive(false);
+        // 완전히 사라지면 오브젝트 파괴
+        Destroy(gameObject);
     }
 }
