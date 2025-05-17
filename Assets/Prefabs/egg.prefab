@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8602633350590639446}
   - component: {fileID: 3962535512499872944}
   - component: {fileID: 4567218194112507261}
+  - component: {fileID: 5322555782334421893}
   m_Layer: 0
   m_Name: egg
   m_TagString: Enemy
@@ -124,7 +125,7 @@ MonoBehaviour:
   user: {fileID: 0}
   dropItemPrefab: {fileID: 6828630147023817935, guid: 92d3784993e076c42aa938a37395cb48, type: 3}
   hp: 10
-  speed: 3
+  speed: 9
 --- !u!50 &3962535512499872944
 Rigidbody2D:
   serializedVersion: 4
@@ -187,3 +188,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.94256496, y: -0.6732607}
   m_Size: {x: 12.209715, y: 14.005075}
   m_Direction: 0
+--- !u!114 &5322555782334421893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074784173805087958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb698df500c7fbc478e293acf1f0b5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
