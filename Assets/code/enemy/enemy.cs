@@ -51,13 +51,7 @@ public class enemy : MonoBehaviour
     }
 
 
-    public void givehit()
-    {
-       
-        
-
-
-    }
+    
 
 
     // Update is called once per frame
@@ -77,6 +71,7 @@ public class enemy : MonoBehaviour
         // 현재 머티리얼의 색상을 가져옴 (R, G, B, A 포함)
         Color color = renderer.material.color;
 
+        rb.simulated = false;
         // 알파(투명도)를 1 → 0까지 매 프레임마다 감소시킴
         for (float alpha = 1f; alpha > 0f; alpha -= Time.deltaTime)
         {
