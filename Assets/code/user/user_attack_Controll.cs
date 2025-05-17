@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    public Transform firePoint;           // 무기/총알 발사 위치
-    public GameObject projectilePrefab;   // 투사체 프리팹
+    public Transform firePoint;  // 마우스를 바라볼 기준점
 
     private PlayerStats stats;
     private float attackCooldown = 0f;
@@ -17,54 +16,43 @@ public class PlayerAttackController : MonoBehaviour
         {
             Debug.LogError("PlayerStats 컴포넌트가 필요합니다!");
         }
+
+        if (firePoint == null)
+        {
+            Debug.LogError("FirePoint가 연결되지 않았습니다!");
+        }
     }
 
     void Update()
     {
-        RotateWeaponTowardMouse();
+        RotateTowardMouse();
         AutoAttack();
     }
 
-    void RotateWeaponTowardMouse()
+    void RotateTowardMouse()
     {
         if (firePoint == null) return;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 dir = mousePos - firePoint.position;
-        dir.z = 0f;
+        Vector3 direction = mousePos - firePoint.position;
+        direction.z = 0f;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         firePoint.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void AutoAttack()
     {
-        if (attackCooldown > 0)
+        if (attackCooldown > 0f)
         {
             attackCooldown -= Time.deltaTime;
+            return;
         }
 
-        if (attackCooldown <= 0f)
-        {
-            Fire();
-            attackCooldown = 1f / stats.attackSpeed; // 쿨타임 = 초당 공격 수 기준
-        }
-    }
+        // 자동 공격 트리거
+        Debug.Log($"🗡️ 자동 근접 공격 발생! 방향: {firePoint.right}, 공격력: {stats.attackPower}");
 
-    void Fire()
-    {
-        if (projectilePrefab == null || firePoint == null) return;
-
-        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-        if (rb != null)
-        {
-            Vector2 direction = firePoint.right;
-            rb.velocity = direction * 10f;
-        }
-
-        // ✅ 로그 출력
-        Debug.Log($"🗡️ 자동 공격! 방향: {firePoint.right}, 공격 속도: {stats.attackSpeed}/s");
+        attackCooldown = 1f / stats.attackSpeed; // 쿨타임 = 1 / 초당 공격 횟수
     }
 }
+
