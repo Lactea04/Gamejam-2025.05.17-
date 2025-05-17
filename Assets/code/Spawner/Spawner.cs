@@ -35,9 +35,9 @@ public class Spawner : MonoBehaviour
     {
         GameObject obj = Instantiate(spawnTarget, transform.position, Quaternion.identity);
         // TODO : obj √ ±‚»≠
-        if(obj.TryGetComponent<enemy_move>(out enemy_move enemy))
+        if(obj.TryGetComponent<enemymove>(out enemymove enemy))
         {
-            enemy.Initialize(gameObject);
+            enemy.Initialized(gameObject);
         }
     }
 }
