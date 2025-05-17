@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_0"
+      name: Idle_Left
       rect:
         serializedVersion: 2
         x: 1
@@ -105,7 +105,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,7 +118,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_1"
+      name: Walk_Left
       rect:
         serializedVersion: 2
         x: 512
@@ -126,7 +126,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_2"
+      name: Idle_Right
       rect:
         serializedVersion: 2
         x: 0
@@ -147,7 +147,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_3"
+      name: Walk_Right
       rect:
         serializedVersion: 2
         x: 512
@@ -168,7 +168,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_0": 597607392
-      "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_1": 327712951
-      "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_2": -602755982
-      "ChatGPT Image 2025\uB144 5\uC6D4 17\uC77C \uC624\uD6C4 06_55_57_3": -852563742
+      Idle_Left: 597607392
+      Idle_Right: -602755982
+      Walk_Left: 327712951
+      Walk_Right: -852563742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

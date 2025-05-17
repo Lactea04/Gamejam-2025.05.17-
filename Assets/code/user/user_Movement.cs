@@ -1,35 +1,39 @@
-using System.Collections;
+癤퓎sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerMovement2D : MonoBehaviour
+{
+    public float moveSpeed = 5f;
 
-    public class PlayerMovement2D : MonoBehaviour
+    private Rigidbody2D rb;
+    private Vector2 input;
+
+    private PlayerAnimatorController animatorController;
+
+    void Start()
     {
-        public float moveSpeed = 5f;
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
 
-        private Rigidbody2D rb;
-        private Vector2 moveInput;
-
-        void Start()
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
-
-        void Update()
-        {
-            user_move();
-        }
-        void user_move()
-        {
-            // GetAxisRaw는 -1, 0, 1의 정수 값 반환 → 즉각 반응
-            float moveX = Input.GetAxisRaw("Horizontal"); // A, D
-            float moveY = Input.GetAxisRaw("Vertical");   // W, S
-
-            moveInput = new Vector2(moveX, moveY).normalized;
-        }
-
-        void FixedUpdate()
-        {
-            rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
-        }
+        animatorController = GetComponent<PlayerAnimatorController>();
     }
+
+    void Update()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        input = new Vector2(moveX, moveY).normalized;
+
+        if (animatorController != null)
+            animatorController.UpdateAnimation(input);
+    }
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
+    }
+}
