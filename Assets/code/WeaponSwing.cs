@@ -6,13 +6,21 @@ public class WeaponSwing : MonoBehaviour
     public float swingAngle = 180f;
 
     private float timer = 0f;
+    private float dir;
     private float startAngle;
     private float endAngle;
 
+    public void init(Transform _dir)
+    {
+        dir = _dir.eulerAngles.z;
+    }
+
     void Start()
     {
-        startAngle = -swingAngle / 2f;
-        endAngle = swingAngle / 2f;
+        float offset = -90f;
+
+        startAngle = dir + offset -swingAngle / 2f;
+        endAngle = dir + offset + swingAngle / 2f;
         transform.localRotation = Quaternion.Euler(0f, 0f, startAngle);
     }
 
