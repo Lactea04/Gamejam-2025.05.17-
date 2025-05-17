@@ -1,21 +1,34 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollowClamped2D : MonoBehaviour
 {
-    public Transform target;       // 따라갈 대상 (플레이어)
-    public float smoothSpeed = 0.125f;  // 따라가는 속도
-    public Vector3 offset = new Vector3(0f, 0f, -10f);  // 카메라 위치 보정
+    public Transform target;                // 따라갈 대상 (플레이어)
+    public Vector2 minBounds;               // 맵 왼쪽 아래 (xMin, yMin)
+    public Vector2 maxBounds;               // 맵 오른쪽 위 (xMax, yMax)
+    public float smoothSpeed = 0.1f;
+    public Vector3 offset = new Vector3(0, 0, -10f);
+
+    private float camHalfHeight;
+    private float camHalfWidth;
+
+    void Start()
+    {
+        Camera cam = Camera.main;
+        camHalfHeight = cam.orthographicSize;
+        camHalfWidth = cam.aspect * camHalfHeight;
+    }
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        // 따라갈 목표 위치
         Vector3 desiredPosition = target.position + offset;
 
-        // 부드럽게 이동
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        // 카메라 시점의 범위를 맵 안으로 제한 (Clamp)
+        float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
+        float clampedY = Mathf.Clamp(desiredPosition.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
 
-        transform.position = smoothedPosition;
+        Vector3 clampedPosition = new Vector3(clampedX, clampedY, desiredPosition.z);
+        transform.position = Vector3.Lerp(transform.position, clampedPosition, smoothSpeed);
     }
 }
