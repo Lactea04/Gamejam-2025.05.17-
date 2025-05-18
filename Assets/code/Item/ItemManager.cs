@@ -28,7 +28,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void AddMaterial(string materialName, int amount = 1)
+    public bool AddMaterial(string materialName, int amount = 1)
     {
         if (!materialCounts.ContainsKey(materialName))
         {
@@ -36,6 +36,7 @@ public class ItemManager : MonoBehaviour
         }
         materialCounts[materialName] += amount;
         Debug.Log(materialName + " : " + materialCounts[materialName]);
+        return materialCounts[materialName] >= 0;
     }
 
     public int GetMaterialCount(string materialName)

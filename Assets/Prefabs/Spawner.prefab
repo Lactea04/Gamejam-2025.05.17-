@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTarget: {fileID: 0}
-  coolTime: 5
+  coolTime: 2
   user: {fileID: 0}

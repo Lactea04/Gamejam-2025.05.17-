@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("공격 속도 (초당 공격 수)")]
     public float attackSpeed = 1.0f;
+
+    public GameObject gameover;
 
     void Start()
     {
@@ -36,8 +39,9 @@ public class PlayerStats : MonoBehaviour
     void Die()
     {
         Debug.Log("☠️ Player Died!");
-        // TODO: 게임 오버 처리 또는 씬 리스타트
-        // 예: GameManager.Instance.GameOver();
+
+        Time.timeScale = 0.0f;
+        gameover.SetActive(true);
     }
 
     // 공격 속도 증가
