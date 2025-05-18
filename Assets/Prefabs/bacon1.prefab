@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 784966336460847105}
   - component: {fileID: 3837424474677539827}
   - component: {fileID: 6600892027772462153}
+  - component: {fileID: -5950330510923355682}
   m_Layer: 0
   m_Name: bacon1
   m_TagString: Enemy
@@ -197,3 +198,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5950330510923355682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069524027607270471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb698df500c7fbc478e293acf1f0b5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

@@ -5,14 +5,14 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     [SerializeField]
-    private GameObject user; //ÃßÀûÇÒ ´ë»ó (ÇÃ·¹ÀÌ¾î)
+    private GameObject user; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½Ã·ï¿½ï¿½Ì¾ï¿½)
     private Rigidbody2D rb;
-    public GameObject dropItemPrefab; // µå¶øÇÒ ¾ÆÀÌÅÛÀ» ¿¬°áÇØ ³õÀ» º¯¼ö
+    public GameObject dropItemPrefab; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private SpriteRenderer spriteRenderer;
     private bool isDead = false;
     
-    public int hp = 10; // ÀûÀÇ ÇÇÅë
-    public float speed = 3f; // ÀÌµ¿ ¼Óµµ
+    public int hp = 10; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float speed = 3f; // ï¿½Ìµï¿½ ï¿½Óµï¿½
 
     public void Initialized(GameObject _user)
     {
@@ -22,14 +22,14 @@ public class enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;// È¸Àü °íÁ¤
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void FixedUpdate()
     {
-        if (user == null) return;
-        Vector2 direction = (user.transform.position - transform.position).normalized; //¹æÇâº¤ÅÍ °è»ê
-        rb.velocity = direction * speed; // ¼Óµµ ¼³Á¤ÇÏ¿© ÀÌµ¿
+        if (user == null || isDead) return;
+        Vector2 direction = (user.transform.position - transform.position).normalized; //ï¿½ï¿½ï¿½âº¤ï¿½ï¿½ ï¿½ï¿½ï¿½
+        rb.velocity = direction * speed; // ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ìµï¿½
 
         if (direction.x < 0)
             spriteRenderer.flipX = false;
@@ -43,52 +43,38 @@ public class enemy : MonoBehaviour
         if (hp <= 0 && !isDead)
         {
             isDead = true;
-            // ÇöÀç Àû À§Ä¡¿¡ µå¶ø ¾ÆÀÌÅÛ »ý¼º
+            // ï¿½ï¿½ï¿½ï¿½
+            rb.velocity = Vector2.zero;
+            // ï¿½æµ¹ ï¿½ï¿½È°ï¿½ï¿½È­
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
-            // »ç¸Á Ã³¸®
+            // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             StartCoroutine(FadeOut());
         }
     }
-
-
-    public void givehit()
-    {
-       
-        
-
-
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
-    // Ä³¸¯ÅÍ¸¦ Á¡Á¡ Åõ¸íÇÏ°Ô ¸¸µé¾î »ç¶óÁö°Ô ÇÏ´Â ÄÚ·çÆ¾
+    // Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ú·ï¿½Æ¾
     IEnumerator FadeOut()
     {
-        // ÀÌ ¿ÀºêÁ§Æ®ÀÇ Renderer ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È (¿ÜÇü °ü·Ã)
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Renderer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         Renderer renderer = GetComponent<Renderer>();
 
-        // ÇöÀç ¸ÓÆ¼¸®¾óÀÇ »ö»óÀ» °¡Á®¿È (R, G, B, A Æ÷ÇÔ)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (R, G, B, A ï¿½ï¿½ï¿½ï¿½)
         Color color = renderer.material.color;
 
-        // ¾ËÆÄ(Åõ¸íµµ)¸¦ 1 ¡æ 0±îÁö ¸Å ÇÁ·¹ÀÓ¸¶´Ù °¨¼Ò½ÃÅ´
+        rb.simulated = false;
+        // ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ 1 ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½Å´
         for (float alpha = 1f; alpha > 0f; alpha -= Time.deltaTime)
         {
-            // ¾ËÆÄ °ª¸¸ ÁÙÀÌ°í »ö»ó ´Ù½Ã Àû¿ë
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
             color.a = alpha;
             renderer.material.color = color;
 
-            // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö Àá±ñ ´ë±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             yield return null;
         }
 
-        // ¿ÏÀüÈ÷ »ç¶óÁö¸é ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
-        gameObject.SetActive(false);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½
+        Destroy(gameObject);
     }
 }
